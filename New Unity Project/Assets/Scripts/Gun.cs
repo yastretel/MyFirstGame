@@ -4,6 +4,7 @@ public class Gun : MonoBehaviour
 {
     public GameObject Bullet;
     public Transform ShootPoint;
+    public float Force;
     void Start()
     {
         
@@ -11,9 +12,13 @@ public class Gun : MonoBehaviour
 
        void Update()
     {
-      if (Input.GetMouseButton(0))
+      if (Input.GetMouseButtonDown(0))
     {
-        Instantiate(Bullet, ShootPoint.position, Quaternion.identity);
+        GameObject insBullet = Instantiate(Bullet, ShootPoint.position, Quaternion.identity);
+         insBullet.GetComponent<Rigidbody>().AddForce(ShootPoint.forward * Force);
+        
+        
+        
     }  
     }
 }
